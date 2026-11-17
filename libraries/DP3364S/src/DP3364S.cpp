@@ -189,7 +189,7 @@ bool DP3364S::begin(const DP3364S_Pins &pins, uint32_t clockHz,
   gdma_apply_strategy(_dma, &strategy);
 #if ESP_IDF_VERSION >= ESP_IDF_VERSION_VAL(5, 4, 0)
   gdma_transfer_config_t transfer = {};
-  transfer.max_data_burst_size = 4; // 4-byte alignment, as core 2.x used
+  transfer.max_data_burst_size = 0; // S3 accepts only 0/16/32/64; 16 MB/s needs no burst
   transfer.access_ext_mem = false;
   gdma_config_transfer(_dma, &transfer);
 #else
